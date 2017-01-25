@@ -88,10 +88,10 @@ multiply(4, 3, function(answer){
 
   //Code Here for contains
 //to copy into jsbin.
-// var names = ['Tyler', 'Cahlan', 'Ryan', 'Colt', 'Tyler', 'Blaine', 'Cahlan'];
-//
-// //Code Here for contains
-// var contains = function(arr, str, cb){
+//var names = ['Tyler', 'Cahlan', 'Ryan', 'Colt', 'Tyler', 'Blaine', 'Cahlan'];
+
+//Code Here for contains
+var contains = function(arr, str, cb){
 //   for(var i = 0; i < arr.length; i++){
 // //     console.log(str);
 // //     console.log(arr[i]);
@@ -102,19 +102,15 @@ multiply(4, 3, function(answer){
 //     else if(i >= arr.length - 1 && str !== arr[i]){
 //       cb(false);
 //     }
-//
 //   }
-//
-// }
-//
-//
-// contains(names, 'Colt', function(result){
-//   if(result === true){
-//     console.log('Colt is in the array');
-//   } else {
-//     console.log('Colt is not in the array');
-//   }
-// });
+  var nameInString;
+  if(arr.indexOf(str) === -1){
+    nameInString = false;
+  } else {
+    nameInString = true;
+  }
+  cb(nameInString);
+}
 
 
 contains(names, 'Colt', function(result){
@@ -127,14 +123,25 @@ contains(names, 'Colt', function(result){
 
 
 
-
-
 /* NEXT PROBLEM ---- NEXT PROBLEM ---- NEXT PROBLEM ---- NEXT PROBLEM */
 
 
 
 
     //Code Here for uniq
+var uniq = function(arr, cb){
+  var uniqArr = [];
+
+  //Goes through each element of an array, asks if it is in the uniqArr, if not, it pushes it.
+  arr.forEach(function(item){
+    if(uniqArr.indexOf(item) === -1){
+      uniqArr.push(item);
+    }
+  })
+
+  cb(uniqArr);
+}
+
 
 uniq(names, function(uniqArr){
   console.log('The new names array with all the duplicate items removed is ', uniqArr);
@@ -150,6 +157,15 @@ uniq(names, function(uniqArr){
 
 
     //Code Here for each
+var each = function(arr, cb){
+  for(var i = 0; i < arr.length; i++){
+    cb(arr[i], i);
+  }
+  // arr.forEach(function(item){
+  //   cb()
+  // })
+}
+
 
 each(names, function(item, indice){
   console.log('The item in the ' + indice + ' position is ' + item)
@@ -187,6 +203,14 @@ var users = [
     address: '192 East 32 North'
   },
 ];
+
+var getUserById = function(arr, id, cb){
+  arr.forEach(function(element){
+    if(element.id === id){
+      cb(element);
+    }
+  })
+}
 
 getUserById(users, '16t', function(user){
   console.log('The user with the id 16t has the email of ' + user.email + ' the name of ' + user.name + ' and the address of ' + user.address);
